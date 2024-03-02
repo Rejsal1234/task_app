@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:task_app/provider/task_provider.dart';
 import 'package:task_app/task.dart';
 
 class AddTaskScreen extends StatefulWidget {
@@ -71,11 +73,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 MaterialButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      Navigator.pop(
-                        context,
-                        Task(_titleController.text, _descriptionController.text,
-                            false),
-                      );
+                      final task = Task(_titleController.text,
+                          _descriptionController.text, false);
+                      context.read<TaskProvider>().addTask(task);
+                      Navigator.pop(context);
                     } else {
                       const snackBar = SnackBar(
                           content: Text("Please fill the required fields"));

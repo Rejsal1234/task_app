@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:task_app/provider/task_provider.dart';
 
 class TaskCountScreen extends StatelessWidget {
-  const TaskCountScreen({required this.count, super.key});
-
-  final int count;
+  const TaskCountScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final taskList = context.watch<TaskProvider>().taskList;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -16,7 +17,7 @@ class TaskCountScreen extends StatelessWidget {
       ),
       body: Center(
         child: Text(
-          count.toString(),
+          taskList.length.toString(),
           style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 100),
         ),
       ),

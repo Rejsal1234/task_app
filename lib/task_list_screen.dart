@@ -50,12 +50,12 @@ class TaskListScreen extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return ListTile(
                     title: Text(
-                      taskList[index].title,
+                      taskList[index].title ?? "",
                       style: const TextStyle(
                           fontWeight: FontWeight.w500, fontSize: 16),
                     ),
                     subtitle: Text(
-                      taskList[index].description,
+                      taskList[index].description ?? "",
                       style: const TextStyle(
                           fontWeight: FontWeight.w300, fontSize: 12),
                     ),

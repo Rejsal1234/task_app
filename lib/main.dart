@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:task_app/helper/database_helper.dart';
 import 'package:task_app/provider/task_provider.dart';
+import 'package:task_app/repository/database_repository.dart';
 import 'package:task_app/task_list_screen.dart';
 
 void main() {
@@ -8,7 +10,11 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => TaskProvider(),
+          create: (_) => TaskProvider(
+            DatabaseRepository(
+              DatabaseHelper(),
+            ),
+          ),
         ),
       ],
       child: const MyApp(),
